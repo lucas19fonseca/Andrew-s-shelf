@@ -1,0 +1,74 @@
+[
+    {
+      "id": 1,
+      "nome": "Divergente",
+      "descricao": "O livro ambientado em uma sociedade futurista dividida em facções. Beatrice Prior descobre que é divergente, não se encaixando em uma única facção. Ela enfrenta desafios ao tentar esconder sua verdadeira natureza e se envolve em um conflito crescente entre as facções. O livro aborda temas de identidade, coragem e escolha pessoal em uma narrativa repleta de ação e reviravoltas emocionantes.",
+      "imagem": "img/divergente.jpg"
+    },
+    {
+      "id": 2,
+      "nome": "De sangue e cinzas",
+      "descricao": "Poppy, prestes a completar 19 anos, se prepara para sua ascensão, um ritual vital para salvar Solis da maldição atlantiana. Em meio a dúvidas sobre sua prontidão para o sacrifício, ela questiona seu propósito e o papel divino. Enfrentando incertezas, Poppy embarca em uma jornada de autodescoberta e coragem, determinada a proteger seu reino apesar do desconhecido.",
+      "imagem":"img/De_sangue_em_cinzas.jpg"
+    },
+    {
+      "id": 3,
+      "nome": "The kiss of deception",
+      "descricao": "Depois de um casamento arranjado Lia decide fungir e abandonando sua função como princesa, ela apenas nao contava que seu noivo iria atrás dela, támbem nao contava com o assasino que foi contratado para mata-la.Quem é o principe?, Quem é o assasino?, Quem consiguirá encontrar ela primeiro?",
+      "imagem":"img/the_kiss_of_decption.jpg"
+    },
+    {
+      "id": 4,
+      "nome": "Trono de vidro",
+      "descricao": "Celine, uma hábil assassina, é chamada pelo príncipe para participar de uma competição mortal. Enfrentando desafios e adversários perigosos, ela busca a aprovação do rei. No entanto, a incerteza paira sobre sua sobrevivência, enquanto ela luta para superar os desafios e garantir seu lugar no reino.",
+      "imagem":"img/trono_de_vidro.jpg"
+    },
+    {
+      "id": 5,
+      "nome": "Game of thrones",
+      "descricao": "Dos sete reinos o trono de ferro é muito disputado, é uma história repleta de alianças e conflitos entre as dinastias nobres.as reenvidicaçoes e lutas pela propria idenpedencia.E a inteça batalha pelo trono de ferro.Quem será o último a se sentar com a coroa?.",
+      "imagem":"img/game_of_trones.jpg"
+    },
+    {
+      "id": 6,
+      "nome": "Quarta asa",
+      "descricao": "Violet, inicialmente despreparada para os desafios da vida, é obrigada a se inscrever na escolha de cadetes. Lá, ela precisa dominar habilidades como voar, lutar e se conectar a um dragão. Com a iminência da guerra, Violet se destaca como uma arma valiosa para o reino, se mostrando habilidosa.",
+      "imagem":"img/quarta_asa.jpg"
+    },
+    {
+      "id": 7,
+      "nome": "harry potter e o cálice de fogo",
+      "descricao": "Harry Potter e o Cálice de Fogo narra a participação de Harry no Torneio Tribruxo, envolvendo desafios perigosos e revelações sombrias sobre Voldemort. O livro mergulha ainda mais fundo no mundo mágico de Hogwarts, explorando amizades, rivalidades e mistérios que mantêm os leitores presos do início ao fim.",
+      "imagem":"img/harry-potter-e-o-calice-de-fogo.jpg"
+  },
+  {
+      "id": 8,
+      "nome": "harry potter a pedra filosofal",
+      "descricao": "Harry Potter e a Pedra Filosofal apresenta a jornada inicial do jovem bruxo ao descobrir seu destino na Escola de Magia e Bruxaria de Hogwarts. Junto com seus novos amigos, Ron e Hermione, Harry desvenda mistérios, enfrenta desafios e confronta o maligno Voldemort. O filme captura a magia e a emoção da obra de J.K. Rowling, marcando o início de uma série de aventuras extraordinárias.",
+      "imagem":"img/harry-potter-a-pedra-filosofal.jpg"
+    },
+    {
+      "id": 9,
+      "nome": "harry potter a camara secreta",
+      "descricao": "Harry Potter e a Câmara Secreta acompanha Harry durante seu segundo ano em Hogwarts, quando uma série de eventos misteriosos assola a escola, relacionados à lendária Câmara Secreta. Com a ajuda de seus amigos, Harry investiga a verdade por trás dos ataques e descobre segredos sombrios do passado de Hogwarts, enquanto enfrenta novos desafios e perigos.",
+      "imagem":"img/harry-potter-a-camara-secreta.jpg"
+    },
+    {
+      "id": 10,
+      "nome": "percy jackson o ladrão de raios",
+      "descricao": "Percy Jackson e o Ladrão de Raios narra a jornada de Percy, um adolescente que descobre ser um semideus e filho de Poseidon. Ele embarca em uma missão para recuperar o raio de Zeus roubado, enfrentando monstros mitológicos e descobrindo segredos sobre seu próprio passado. Com a ajuda de seus amigos Grover e Annabeth, Percy enfrenta desafios para evitar uma guerra entre os deuses.",
+      "imagem":"img/ladrao.jpg"
+    },
+    {
+      "id": 11,
+      "nome": "Percy Jackson a maldição do titã",
+      "descricao": "Percy Jackson e a Maldição do Titã continua a saga de Percy, onde ele embarca em uma perigosa missão para resgatar seu amigo Grover, capturado por um titã. Junto com seus aliados, Percy enfrenta desafios épicos, incluindo a profecia que o envolve diretamente, enquanto lida com novas ameaças e segredos do mundo dos deuses e dos semideuses.",
+      "imagem":"img/maldicao.jpg"
+    },
+    {
+      "id": 12,
+      "nome": "Percy Jackson o último olimpiano",
+      "descricao":"Percy Jackson e o Último Olimpiano é o emocionante desfecho da série, onde Percy lidera os campistas na batalha decisiva contra os titãs que tentam destruir o Olimpo. Com a profecia se aproximando de seu cumprimento, Percy enfrenta desafios finais para salvar seus amigos, proteger o acampamento e garantir o destino dos deuses e dos semideuses." ,
+      "imagem":"img/ultimo.jpg"
+    }
+]

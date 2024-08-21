@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Logada</title>
+  <link rel="stylesheet" href="accounts.css">
+  <link rel="stylesheet" href="styles/produtos.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary centralizar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Andrew's shelf</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="logged.html">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="carrinho.html">Minha Biblioteca</a>
+          </li>
+        </ul>
+        <form class="d-flex ms-auto" role="search" id="searchForm">
+          <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search" id="searchInput">
+        </form>
+        <button id="logoutBtn" class="">❌</button>
+
+      </div>
+    </div>
+  </nav>
+  <div id="resultadosBusca" class="container mt-3"></div>
+
+  <h1 class="text-center">Encontre seu livro📚</h1>
+  <div class="container mt-5" id="produtos">
+    <div class="row" id="listaProdutos">
+      <!-- Produtos serão adicionados aqui -->
+    </div>
+  </div>
+  
+  <script src="script.js"></script> 
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = JSON.parse(localStorage.getItem('loggedInUser'));
+
+      if (!user) {
+        alert('Você não está logado!');
+        window.location.href = 'login.html';
+      }
+
+      const logoutBtn = document.getElementById('logoutBtn');
+      logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('loggedInUser');
+        alert('Você foi deslogado!');
+        window.location.href = 'login.html';
+      });
+
+      // Carregar produtos
+      fetch('produtos.json')
+        .then(response => response.json())
+        .then(produtos => {
+          const listaProdutos = document.getElementById('listaProdutos');
+          produtos.forEach(produto => {
+            const produtoCard = `
+              <div class="col-md-3 mb-1 card-medio">
+                <div class="card produto-card">
+                  <div class="card-body">
+                    <h5 class="card-title">${produto.nome}</h5>
+                    <img src="${produto.imagem}" class="imagem-book" style="width: 170px;">
+                    <p class="card-text">${produto.descricao} </p> 
+                    <button class="btn btn-primary" onclick="adicionarAoCarrinho(${produto.id})">Adicionar na minha biblioteca</button>
+                    
+                  </div>
+                </div>
+              </div>`;
+            listaProdutos.innerHTML += produtoCard;
+          });
+        });
+        
+
+      // Pesquisa dinâmica
+      $('#searchInput').on('input', function() {
+        const searchQuery = $(this).val().toLowerCase();
+        $.getJSON('produtos.json', function(produtos) {
+          const resultados = produtos.filter(produto => produto.nome.includes(searchQuery));
+          displayResultados(resultados);
+        });
+      });
+    });
+
+
+
+    function displayResultados(produtos) {
+      const resultadosDiv = $('#resultadosBusca');
+      resultadosDiv.empty().append('<h2>Resultados da Pesquisa</h2>');
+      if (produtos.length === 0) {
+        resultadosDiv.append('<p>Nenhum livro encontrado.</p>');
+      } else {
+        const row = $('<div class="row"></div>');
+        produtos.forEach(produto => {
+          const col = $(`    
+            <div class="col-md-4">
+              <div class="card mb-4 produto-card">
+                <div class="card-body">
+                  <h5 class="card-title">${produto.nome}</h5>
+                  <p class="card-text">${produto.descricao}</p>
+                  <button class="btn btn-primary" onclick="adicionarAoCarrinho(${produto.id})">Adicionar a minha biblioteca</button>
+                </div>
+              </div>
+            </div>`);
+          row.append(col);
+        });
+        resultadosDiv.append(row);
+      }
+    }
+
+    window.adicionarAoCarrinho = function(produtoId) {
+      $.getJSON('produtos.json', function(produtos) {
+        const produto = produtos.find(produto => produto.id === produtoId);
+        const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+        carrinho.push(produto);
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        alert(`${produto.nome} foi adicionado ao carrinho!`);
+      });
+    };
+  </script>
+</body>
+</html>
