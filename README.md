@@ -23,7 +23,7 @@ Embora o projeto ainda esteja em evolução, ele já oferece uma interface funci
 
 📞 **Contato**
 - **Nome**: Lucas Andrade
-- **Email**: lucas.andrade@exemplo.com
-- **LinkedIn**: [linkedin.com/in/lucas-andrade](https://www.linkedin.com/in/lucas-andrade)
+- **Email**: lucas19fonseca@gmail.com
+- **LinkedIn**: [linkedin.com/in/lucas-andrade](https://www.linkedin.com/in/lucas-andrade-5511022b3/)
 
 ---
