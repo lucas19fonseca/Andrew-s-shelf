@@ -1,5 +1,3 @@
-![Captura de tela 2024-10-11 220153](https://github.com/user-attachments/assets/7ec3b216-f80e-4180-a80d-243c081c16fb)
----
 
 # 📚 Meu Primeiro Site de Livros
 
