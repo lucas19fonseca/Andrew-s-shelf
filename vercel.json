@@ -1,5 +1,5 @@
 {
   "builds": [
-    { "src": "index.html", "use": "@vercel/static" }
+    { "src": "Javascript/index.html", "use": "@vercel/static" }
   ]
 }
