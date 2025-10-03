@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.fundo {
+    background-color: rgb(162, 210, 252);
+}
+
+.heading1{
+    margin: 4%;
+}
+
+header,
+.exemplo-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5%;
+    margin: auto;
+}
+
+.exemplo-login {
+    flex-direction: column;
+}
+
+.container-btn{
+    margin: auto;
+}
+
+.bttn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.bttn:hover {
+    background-color: #0056b3;
+}

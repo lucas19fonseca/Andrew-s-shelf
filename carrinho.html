@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca</title>
+  <link rel="stylesheet" href="accounts.css">
+</head>
+<body>
+  <h1>Quero Ler</h1>
+  <div id="carrinho"></div>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const carrinhoDiv = document.getElementById('carrinho');
+
+      if (carrinho.length === 0) {
+        carrinhoDiv.innerHTML = '<p>Sua biblioteca está vazia.</p>';
+      } else {
+        carrinhoDiv.innerHTML = '<ul>' + carrinho.map(item => `<li>${item.nome} - ${item.baixar}</li>`).join('') + '</ul>';
+      }
+    });
+  </script>
+</body>
+</html>
