@@ -11,6 +11,7 @@ Embora o projeto ainda esteja em evolução, ele já oferece uma interface funci
 - **HTML5**: Para a estruturação das páginas do site.
 - **CSS3**: Para a estilização e layout responsivo do site.
 - **JavaScript**: Para adicionar interatividade básica à página.
+- Vercel (deploy)
 
 📞 **Contato**
 - **Nome**: Lucas Andrade
