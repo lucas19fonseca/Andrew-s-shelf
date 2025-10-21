@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrew's Shelf</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    /* ---------- CSS GLOBAL ---------- */
+    * { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    body { background-color: #c9c9c9; display: flex; flex-direction: column; align-items: center; }
+    .fundo { background-color: rgb(162, 210, 252); }
+    .heading1 { margin: 4%; }
+    header, .exemplo-login { display: flex; justify-content: center; align-items: center; padding-top: 5%; margin: auto; }
+    .exemplo-login { flex-direction: column; }
+
+    /* Botões */
+    .bttn { padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; font-size: 16px; border-radius: 5px; }
+    .bttn:hover { background-color: #0056b3; }
+
+    /* Cards */
+    .produto-card { border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s; width: 300px; margin: 10px; }
+    .produto-card:hover { transform: scale(1.05); }
+    .produto-card .card-title { font-size: 1.25rem; font-weight: bold; }
+    .produto-card .card-text { font-size: 1rem; color: #555; }
+
+    /* Layout da biblioteca */
+    #resultadosBusca, #listaProdutos, #carrinho {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      gap: 10px;
+      margin: 20px auto;
+    }
+    form input, form button {
+      padding: 8px;
+      font-size: 16px;
+    }
+    #register-link { text-align: center; margin-top: 10px; }
+  </style>
+</head>
+
+<body>
+  <!-- ---------- NAVEGAÇÃO ---------- -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary w-100">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" onclick="mostrarPagina('home')">Andrew's Shelf</a>
+      <div class="collapse navbar-collapse">
+        <a class="nav-link active" href="#" onclick="mostrarPagina('home')">Home</a>
+        <a class="nav-link" href="#" onclick="mostrarPagina('logged')">Menu</a>
+        <a class="nav-link" href="#" onclick="mostrarPagina('biblioteca')">Minha Biblioteca</a>
+      </div>
+      <button id="logoutBtn" class="btn btn-outline-danger btn-sm">❌</button>
+      <input type="search" id="searchInput" class="form-control w-auto ms-3" placeholder="Pesquisar livros...">
+    </div>
+  </nav>
+
+  <!-- ---------- PÁGINAS ---------- -->
+  <main class="container mt-4">
+    <!-- HOME -->
+    <section id="home">
+      <h1 class="heading1">Bem-vindo ao Andrew's Shelf</h1>
+      <p class="text-center">
+        Explore o Universo Literário no Andrew's Shelf!<br><br>
+        Seja muito bem-vindo ao Andrew's Shelf, mais do que um simples projeto acadêmico — é um portal para explorar as vastas possibilidades do mundo dos livros.<br><br>
+        Aqui, cada página é uma porta para a imaginação, o conhecimento e a emoção.
+      </p>
+      <div class="text-center mt-4">
+        <button class="bttn" onclick="mostrarPagina('login')">Entrar</button>
+        <button class="bttn" onclick="mostrarPagina('registro')">Registrar</button>
+      </div>
+    </section>
+
+    <!-- REGISTRO -->
+    <section id="registro" style="display:none;">
+      <h1>Registro</h1>
+      <form id="registroForm">
+        <input type="text" id="nome" placeholder="Nome" required>
+        <input type="email" id="email" placeholder="E-mail" required>
+        <input type="password" id="senha" placeholder="Senha" required>
+        <input type="password" id="repetirSenha" placeholder="Repetir Senha" required>
+        <button type="submit" class="bttn">Registrar</button>
+      </form>
+    </section>
+
+    <!-- LOGIN -->
+    <section id="login" style="display:none;">
+      <h1>Login</h1>
+      <form id="loginForm">
+        <input type="email" id="emailLogin" placeholder="E-mail" required>
+        <input type="password" id="senhaLogin" placeholder="Senha" required>
+        <button type="submit" class="bttn">Entrar</button>
+        <div id="register-link"><a href="#" onclick="mostrarPagina('registro')">Criar uma conta</a></div>
+      </form>
+    </section>
+
+    <!-- PÁGINA LOGADA -->
+    <section id="logged" style="display:none;">
+      <h2>Catálogo de Livros</h2>
+      <div id="listaProdutos" class="d-flex flex-wrap justify-content-center"></div>
+    </section>
+
+    <!-- MINHA BIBLIOTECA -->
+    <section id="biblioteca" style="display:none;">
+      <h1>Minha Biblioteca</h1>
+      <div id="carrinho"></div>
+    </section>
+  </main>
+
+  <!-- ---------- JSON EMBUTIDO ---------- -->
+  <script id="produtos-json" type="application/json">
+  [
+    {"id":1,"nome":"Divergente","descricao":"Sociedade futurista dividida em facções...","imagem":"https://upload.wikimedia.org/wikipedia/pt/5/52/Divergente.jpg"},
+    {"id":2,"nome":"De sangue e cinzas","descricao":"Poppy se prepara para sua ascensão...","imagem":"https://m.media-amazon.com/images/I/81I+7YxtSFL.jpg"},
+    {"id":3,"nome":"The kiss of deception","descricao":"Depois de um casamento arranjado, Lia foge...","imagem":"https://images-na.ssl-images-amazon.com/images/I/71y18+skQFL.jpg"},
+    {"id":4,"nome":"Trono de vidro","descricao":"Celine, assassina habilidosa, é chamada pelo príncipe...","imagem":"https://images-na.ssl-images-amazon.com/images/I/81Hh7RYXKXL.jpg"},
+    {"id":5,"nome":"Game of Thrones","descricao":"Dos sete reinos, o trono de ferro é muito disputado...","imagem":"https://images-na.ssl-images-amazon.com/images/I/81re6Z2w3HL.jpg"},
+    {"id":6,"nome":"Quarta asa","descricao":"Violet precisa dominar habilidades como voar e lutar...","imagem":"https://images-na.ssl-images-amazon.com/images/I/71O2TT8YhXL.jpg"},
+    {"id":7,"nome":"Harry Potter e o Cálice de Fogo","descricao":"Harry participa do Torneio Tribruxo...","imagem":"https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg"},
+    {"id":8,"nome":"Harry Potter e a Pedra Filosofal","descricao":"Harry descobre seu destino em Hogwarts...","imagem":"https://images-na.ssl-images-amazon.com/images/I/81iqZ2HHD-L.jpg"},
+    {"id":9,"nome":"Harry Potter e a Câmara Secreta","descricao":"Harry investiga ataques misteriosos...","imagem":"https://images-na.ssl-images-amazon.com/images/I/91HHqVTAJQL.jpg"},
+    {"id":10,"nome":"Percy Jackson e o Ladrão de Raios","descricao":"Percy descobre ser filho de Poseidon...","imagem":"https://images-na.ssl-images-amazon.com/images/I/91b0C2YNSrL.jpg"}
+  ]
+  </script>
+
+  <!-- ---------- SCRIPT PRINCIPAL ---------- -->
+  <script>
+    const paginas = ['home','registro','login','logged','biblioteca'];
+
+    function mostrarPagina(id) {
+      paginas.forEach(p => document.getElementById(p).style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+      if (id === 'logged') carregarProdutos();
+      if (id === 'biblioteca') carregarBiblioteca();
+    }
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('loggedInUser');
+      alert('Você foi deslogado!');
+      mostrarPagina('login');
+    });
+
+    // Registro
+    const registroForm = document.getElementById('registroForm');
+    if (registroForm) {
+      registroForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+        const repetir = document.getElementById('repetirSenha').value;
+        if (senha !== repetir) return alert('As senhas não coincidem!');
+        localStorage.setItem('user', JSON.stringify({ nome, email, senha }));
+        alert('Registro bem-sucedido!');
+        mostrarPagina('login');
+      });
+    }
+
+    // Login
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+      loginForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const email = document.getElementById('emailLogin').value;
+        const senha = document.getElementById('senhaLogin').value;
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user && user.email === email && user.senha === senha) {
+          localStorage.setItem('loggedInUser', JSON.stringify(user));
+          alert('Login bem-sucedido!');
+          mostrarPagina('logged');
+        } else alert('E-mail ou senha incorretos!');
+      });
+    }
+
+    // Produtos
+    function carregarProdutos() {
+      const data = JSON.parse(document.getElementById('produtos-json').textContent);
+      const container = document.getElementById('listaProdutos');
+      container.innerHTML = '';
+      data.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'produto-card';
+        card.innerHTML = `
+          <div class="card-body text-center">
+            <h5 class="card-title">${p.nome}</h5>
+            <img src="${p.imagem}" width="170">
+            <p class="card-text">${p.descricao}</p>
+            <button class="btn btn-primary" onclick="adicionarAoCarrinho(${p.id})">Adicionar à biblioteca</button>
+          </div>`;
+        container.appendChild(card);
+      });
+    }
+
+    // Biblioteca
+    function carregarBiblioteca() {
+      const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const div = document.getElementById('carrinho');
+      div.innerHTML = carrinho.length === 0
+        ? '<p>Sua biblioteca está vazia.</p>'
+        : carrinho.map(p => `
+            <div class="produto-card">
+              <img src="${p.imagem}" width="150">
+              <p>${p.nome}</p>
+            </div>`).join('');
+    }
+
+    function adicionarAoCarrinho(id) {
+      const produtos = JSON.parse(document.getElementById('produtos-json').textContent);
+      const produto = produtos.find(p => p.id === id);
+      const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      carrinho.push(produto);
+      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+      alert(`${produto.nome} foi adicionado à sua biblioteca!`);
+    }
+
+    // Pesquisa
+    document.getElementById('searchInput').addEventListener('input', e => {
+      const query = e.target.value.toLowerCase();
+      const produtos = JSON.parse(document.getElementById('produtos-json').textContent);
+      const resultados = produtos.filter(p => p.nome.toLowerCase().includes(query));
+      const container = document.getElementById('listaProdutos');
+      container.innerHTML = '';
+      resultados.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'produto-card';
+        card.innerHTML = `
+          <div class="card-body text-center">
+            <h5 class="card-title">${p.nome}</h5>
+            <img src="${p.imagem}" width="170">
+            <p class="card-text">${p.descricao}</p>
+            <button class="btn btn-primary" onclick="adicionarAoCarrinho(${p.id})">Adicionar à biblioteca</button>
+          </div>`;
+        container.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>
